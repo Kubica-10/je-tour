@@ -95,7 +95,7 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 animate-in fade-in duration-700">
             <div className="lg:col-span-2 space-y-10">
               
-              {/* IMAGEM E BOTÕES PRINCIPAIS */}
+              {/* IMAGEM E AÇÕES */}
               <div className="relative h-[500px] rounded-[3.5rem] overflow-hidden border border-white/10 shadow-3xl group">
                 <img 
                   src={`https://images.unsplash.com/photo-1590424744299-fcc06992991a?auto=format&fit=crop&q=80&w=1200&brazil,travel,city,${destination}`} 
@@ -118,7 +118,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Roteiro Protegido (Links abrem em nova aba) */}
+              {/* Roteiro Markdown */}
               <div className="glass p-12 rounded-[3.5rem] border border-white/5 bg-[#020617]/50">
                 <div className="prose prose-invert max-w-none prose-blue mb-16">
                   <ReactMarkdown 
@@ -145,19 +145,37 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Sidebar Preços e Gastronomia */}
+            {/* Sidebar de Ofertas e Gastronomia */}
             <div className="lg:col-span-1">
               <div className="glass p-8 rounded-[3rem] border border-blue-500/30 sticky top-10 space-y-8 bg-[#020617]/80 backdrop-blur-3xl shadow-3xl">
                 <h3 className="text-2xl font-black italic tracking-tighter uppercase text-white">Guia Local</h3>
+                
                 <div className="p-5 bg-yellow-500/10 rounded-2xl border border-yellow-500/20">
-                  <p className="font-bold text-yellow-500 text-[10px] uppercase mb-2">🍴 Sabores Locais</p>
-                  <p className="text-xs text-slate-400 leading-relaxed italic">Clique nos locais dentro do roteiro para abrir o mapa sem sair desta tela.</p>
+                  <p className="font-bold text-yellow-500 text-[10px] uppercase mb-2 tracking-widest">🍴 Sabores Locais</p>
+                  <p className="text-xs text-slate-400 leading-relaxed italic">Consulte os links no roteiro ao lado para abrir o mapa de cada restaurante.</p>
                 </div>
+
                 <div className="space-y-4">
-                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Hospedagem Encontrada</p>
-                  {realData?.hotels?.slice(0, 3).map((h: any, i: number) => (
-                    <a key={i} href={h.link} target="_blank" rel="noopener noreferrer" className="block p-4 bg-white/5 rounded-2xl text-[11px] font-bold hover:bg-white/10 border border-white/5 truncate transition-all">🏨 {h.title}</a>
+                  <p className="text-[10px] font-black text-slate-500 uppercase tracking-widest">Ofertas Trivago & Estadia</p>
+                  {realData?.hotels?.slice(0, 4).map((h: any, i: number) => (
+                    <a 
+                      key={i} 
+                      href={h.link} 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="group block p-4 bg-white/5 rounded-2xl text-[11px] font-bold hover:bg-blue-600/20 border border-white/5 transition-all truncate"
+                    >
+                      <span className="text-blue-400 group-hover:text-white transition-colors">🏨 {h.title}</span>
+                      <p className="text-[9px] text-slate-500 mt-1 uppercase tracking-tighter">Ver melhor preço disponível</p>
+                    </a>
                   ))}
+                </div>
+
+                {/* BOTÃO DE PATROCINADOR (NIC Standard) */}
+                <div className="p-5 bg-gradient-to-r from-blue-900/40 to-transparent rounded-2xl border border-blue-500/30">
+                  <p className="text-[9px] font-black text-blue-400 uppercase mb-2 tracking-[0.2em]">⭐ Destaque NIC</p>
+                  <p className="text-[11px] font-bold text-white mb-2">Anuncie aqui seu comércio!</p>
+                  <button className="w-full bg-white text-black py-2 rounded-lg font-black text-[9px] uppercase">Saiba Mais</button>
                 </div>
               </div>
             </div>
